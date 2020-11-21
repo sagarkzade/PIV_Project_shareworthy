@@ -204,7 +204,7 @@ classdef ParticleDetection < vision.labeler.AutomationAlgorithm
             
             for i = 1:1:length(centers)
                 distance{i} = sqrt(sum((centers(i,:)-centers(:,:)).^2,2));
-                flag(:,i) = distance{i} >0 & distance{i} <= algObj.nearness_factor*2*23;
+                flag(:,i) = distance{i} >0 & distance{i} <= algObj.nearness_factor*2*algObj.radiusRange(1);
             end
             flag_sum = sum(flag,2);
             particles_boxes(flag_sum>=1 & metric<algObj.metric_overlap_threshold,:) = [];
